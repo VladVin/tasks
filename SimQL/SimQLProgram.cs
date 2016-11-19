@@ -36,14 +36,14 @@ namespace SimQLTask
                 if (i < q.Split('.').Length - 1)
                     {
                     if (tmp?[s] == null || (tmp[s] is JValue))
-                            return q + " = ";
+                            return q;
                         tmp = (JObject) tmp[s];
                     }
                     else
                     {
 
                     if (tmp?[s] == null || tmp[s] is JObject)
-                            return q + " = ";
+                            return q;
                 
                             return (q + " = " + (tmp[s] as JValue).ToString(CultureInfo.InvariantCulture));
                     }
@@ -51,7 +51,7 @@ namespace SimQLTask
                 }
 
             //return null;
-            return q + " = ";
+            return q;
         } 
     }
 }

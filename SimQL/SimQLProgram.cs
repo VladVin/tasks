@@ -42,7 +42,7 @@ namespace SimQLTask
                     }
                     i++;
                 }
-                return "";
+            return tmp[q] == null ? null : "";
         } 
     }
 }

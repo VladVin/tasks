@@ -11,10 +11,12 @@ namespace EvalTask
 			var expression = Console.ReadLine();
 			var json = Console.In.ReadToEnd();
 
-			var literals = JObject.Parse(json);
-			expression = Evaluator.SubstituteConstants(expression, literals);
-
-          	var output = Evaluator.Evaluate(expression);
+			if (json != "")
+			{
+				var literals = JObject.Parse(json);
+				expression = Evaluator.SubstituteConstants(expression, literals);
+			}
+			var output = Evaluator.Evaluate(expression);
 			Console.WriteLine(output);
 		}
 	}

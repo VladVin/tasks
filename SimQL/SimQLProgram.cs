@@ -21,10 +21,7 @@ namespace SimQLTask
             var jObject = JObject.Parse(json);
             var data = (JObject)jObject["data"];
             var queries = jObject["queries"].ToObject<string[]>();
-            return queries.Select(q =>
-            {
-                return TryGetValue(data, q);
-            }).Where(q => q != null);
+            return queries.Select(q => TryGetValue(data, q)).Where(q => q != null);
         }
 
         public static string TryGetValue(JObject data, string q)

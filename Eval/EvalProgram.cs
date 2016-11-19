@@ -6,8 +6,8 @@ namespace EvalTask
 	{
 		static void Main(string[] args)
 		{
-			string input = Console.In.ReadToEnd();
-			string output = "TODO";
+			var input = Console.In.ReadToEnd();
+			var output = Evaluator.Evaluate(input);
 			Console.WriteLine(output);
 		}
 	}

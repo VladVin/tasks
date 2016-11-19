@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using Newtonsoft.Json.Linq;
+using NUnit.Framework;
 
 namespace EvalTask
 {
@@ -30,6 +31,16 @@ namespace EvalTask
 			var output = Evaluator.Evaluate(input);
 			Assert.AreEqual("25", output);
 
+		}
+
+		[Test]
+		public void SubstituteConstantsCorrectly()
+		{
+			var input = "{'a' : 42}";
+			var expression = "a";
+			var literals = JObject.Parse(input);
+			var output = Evaluator.SubstituteConstants(expression, literals);
+			Assert.AreEqual("42", output);
 		}
 	}
 }

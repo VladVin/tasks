@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using System.Linq;
 using System.Text.RegularExpressions;
 using Newtonsoft.Json.Linq;
 
@@ -26,14 +27,11 @@ namespace EvalTask
 
 		public static string SubstituteConstants(string expression, JToken constants)
 		{
-			foreach (var literal in constants.Children())
-			{
-				expression = Regex.Replace(expression,
-				                           (literal as JProperty).Name,
-				                           literal.First.Value<double>()
-				                           		.ToString(CultureInfo.InvariantCulture));
-			}
-			return expression;
+		    return constants.Children()
+                .OrderBy(token => -(token as JProperty).Name.Length)
+                .Aggregate(expression, (current, literal) =>
+                    Regex.Replace(current, (literal as JProperty).Name,
+                        literal.First.Value<double>().ToString(CultureInfo.InvariantCulture)));
 		}
 
 		public static string Evaluate(string expression, JToken constants)

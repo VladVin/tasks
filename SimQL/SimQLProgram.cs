@@ -22,7 +22,7 @@ namespace SimQLTask
             var jObject = JObject.Parse(json);
             var data = (JObject)jObject["data"];
             var queries = jObject["queries"].ToObject<string[]>();
-            return queries.Select(q => TryGetValue(data, q)).Where(q => q != null);
+            return queries.Select(q => TryGetValue(data, q));
         }
 
         public static string TryGetValue(JObject data, string q)
@@ -36,14 +36,14 @@ namespace SimQLTask
                 if (i < q.Split('.').Length - 1)
                     {
                     if (tmp?[s] == null || (tmp[s] is JValue))
-                            return null;
+                            return q + " = ";
                         tmp = (JObject) tmp[s];
                     }
                     else
                     {
 
                     if (tmp?[s] == null || tmp[s] is JObject)
-                            return null;
+                            return q + " = ";
                 
                             return (q + " = " + (tmp[s] as JValue).ToString(CultureInfo.InvariantCulture));
                     }
@@ -51,7 +51,7 @@ namespace SimQLTask
                 }
 
             //return null;
-            return tmp[q] == null ? null : q + " = ";
+            return q + " = ";
         } 
     }
 }

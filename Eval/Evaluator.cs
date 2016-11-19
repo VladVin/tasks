@@ -1,7 +1,4 @@
-﻿using System;
-using Z.Expressions;
-
-namespace EvalTask
+﻿namespace EvalTask
 {
 	public static class Evaluator
 	{

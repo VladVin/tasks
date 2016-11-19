@@ -15,16 +15,8 @@ namespace EvalTask
 				var literals = JObject.Parse(json);
 				expression = Evaluator.SubstituteConstants(expression, literals);
 			}
-			var output = "";
-			try
-			{
-				output = Evaluator.Evaluate(expression);
-				if (output == "Infinity")
-				{
-					output = "error";
-				}
-			}
-			catch (System.Data.SyntaxErrorException ignored)
+			var output = Evaluator.Evaluate(expression);
+			if (output == "Infinity")
 			{
 				output = "error";
 			}

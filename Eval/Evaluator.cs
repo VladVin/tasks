@@ -9,12 +9,19 @@ namespace EvalTask
 	{
 		public static string Evaluate(string expression)
 		{
-			System.Data.DataTable table = new System.Data.DataTable();
-			table.Locale = CultureInfo.InvariantCulture;
-			table.Columns.Add("expression", string.Empty.GetType(), expression);
-			System.Data.DataRow row = table.NewRow();
-			table.Rows.Add(row);
-			return row["expression"] as string;
+			try
+			{
+				System.Data.DataTable table = new System.Data.DataTable();
+				table.Locale = CultureInfo.InvariantCulture;
+				table.Columns.Add("expression", string.Empty.GetType(), expression);
+				System.Data.DataRow row = table.NewRow();
+				table.Rows.Add(row);
+				return row["expression"] as string;
+			}
+			catch
+			{
+				return "error";
+			}
 		}
 
 		public static string SubstituteConstants(string expression, JToken constants)

@@ -30,7 +30,7 @@ namespace JsonConversion
                     var children = child.Value<JToken>().Children();
                     var ch = children.ToList()[0];
                     prod.Add("name", ch.Value<string>("name"));
-                    prod.Add("price", ch.Value<float>("price"));
+                    prod.Add("price", ch.Value<double>("price"));
                     prod.Add("count", ch.Value<long>("count"));
                 }
                 newProducts.Add(prod);

@@ -23,18 +23,29 @@ namespace SimQLTask
             var queries = jObject["queries"].ToObject<string[]>();
             return queries.Select(q =>
             {
+                return TryGetValue(data, q);
+            }).Where(q => q != null);
+        }
+
+        public static string TryGetValue(JObject data, string q)
+        {
                 JObject tmp = data;
                 int i = 0;
                 foreach (string s in q.Split('.'))
                 {
                     if (i < q.Split('.').Length - 1)
-                        tmp = (JObject)tmp[s];
+                    {
+                        if (tmp == null)
+                            return null;
+                        tmp = (JObject) tmp[s];
+                    }
                     else
+                    {
                         return (q + " = " + (tmp[s] as JValue).ToString(CultureInfo.InvariantCulture));
+                    }
                     i++;
                 }
                 return "";
-            });
-        }
+        } 
     }
 }

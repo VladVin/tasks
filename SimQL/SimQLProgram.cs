@@ -41,14 +41,11 @@ namespace SimQLTask
                     }
                     else
                     {
-                    Console.WriteLine("3 " + tmp[s]);
-                    if (tmp?[s] == null )
-                            return null;
 
-                        var jValue = tmp[s] as JValue;
-                        if (jValue != null)
-                            return (q + " = " + jValue.ToString(CultureInfo.InvariantCulture));
-                        else return null;
+                    if (tmp?[s] == null || tmp[s] is JObject)
+                            return null;
+                
+                            return (q + " = " + (tmp[s] as JValue).ToString(CultureInfo.InvariantCulture));
                     }
                     i++;
                 }

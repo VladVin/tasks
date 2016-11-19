@@ -45,7 +45,7 @@ namespace JsonConversion
 
                 if (!ch.HasValues)
                 {
-                    prod.Add("products", null);
+//                    prod.Add("products", null);
                     newProducts.Add(prod);
                     continue;
                 }

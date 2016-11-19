@@ -19,6 +19,10 @@ namespace EvalTask
 			try
 			{
 				output = Evaluator.Evaluate(expression);
+				if (output == "Infinity")
+				{
+					output = "error";
+				}
 			}
 			catch (System.Data.SyntaxErrorException ignored)
 			{

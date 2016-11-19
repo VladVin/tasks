@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Text.RegularExpressions;
 using Newtonsoft.Json.Linq;
 
@@ -21,7 +22,8 @@ namespace EvalTask
 			{
 				expression = Regex.Replace(expression,
 				                           (literal as JProperty).Name,
-				                           literal.First.Value<double>().ToString());
+				                           literal.First.Value<double>()
+				                           		.ToString(CultureInfo.InvariantCulture));
 			}
 			return expression;
 		}

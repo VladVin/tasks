@@ -42,5 +42,13 @@ namespace EvalTask
 			var output = Evaluator.SubstituteConstants(expression, literals);
 			Assert.AreEqual("42", output);
 		}
+
+		[Test]
+		public void PrintFloatingPointsWithDot()
+		{
+			var input = "0.1";
+			var output = Evaluator.Evaluate(input);
+			Assert.AreEqual(input, output);
+		}
 	}
 }

@@ -17,7 +17,7 @@ namespace EvalTask
 			return row["expression"] as string;
 		}
 
-		public static string SubstituteConstants(string expression, JObject constants)
+		public static string SubstituteConstants(string expression, JToken constants)
 		{
 			foreach (var literal in constants.Children())
 			{
@@ -29,7 +29,7 @@ namespace EvalTask
 			return expression;
 		}
 
-		public static string Evaluate(string expression, JObject constants)
+		public static string Evaluate(string expression, JToken constants)
 		{
 			return Evaluate(SubstituteConstants(expression, constants));
 		}

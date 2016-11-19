@@ -17,7 +17,7 @@ namespace JsonConversion
 	    private static string convertToJson3(JObject json2)
 	    {
             var json3 = new JObject();
-            json3.Add("version", 3);
+            json3.Add("version", "3");
 	        var products = json2.GetValue("products");
             var newProducts = new JArray();
             foreach (var child in products.Children())
@@ -30,8 +30,8 @@ namespace JsonConversion
                     var children = child.Value<JToken>().Children();
                     var ch = children.ToList()[0];
                     prod.Add("name", ch.Value<string>("name"));
-                    prod.Add("price", ch.Value<double>("price"));
-                    prod.Add("count", ch.Value<int>("count"));
+                    prod.Add("price", ch.Value<float>("price"));
+                    prod.Add("count", ch.Value<long>("count"));
                 }
                 newProducts.Add(prod);
             }

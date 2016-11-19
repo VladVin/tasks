@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json.Linq;
 using System;
 using System.Linq;
+using Newtonsoft.Json;
 
 namespace JsonConversion
 {
@@ -36,7 +37,7 @@ namespace JsonConversion
                 newProducts.Add(prod);
             }
             json3.Add("products", newProducts);
-	        return json3.ToString();
+	        return json3.ToString(Formatting.None);
 	    }
 	}
 }

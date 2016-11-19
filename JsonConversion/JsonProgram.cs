@@ -10,6 +10,7 @@ namespace JsonConversion
 		static void Main()
 		{
 			string json = Console.In.ReadToEnd();
+//		    string json = @"{""version"":""2"",""products"":{""642572671"":{""name"":""\t\t\t\t\t\t\t\t\t\t"",""price"":26755360,""count"":2147483647},""462028247"":{""name"":""\t\t\t\t\t\t\t\t\t\t"",""price"":1812829817,""count"":1583821338},""1064089862"":{""name"":""jtXpDL4AA"",""price"":1,""count"":1765575149},""441937189"":{""name"":""LPAI"",""price"":2119059550,""count"":260983550},""1493811026"":{""name"":""M"",""price"":1208992471,""count"":1},""1"":{""name"":"""",""price"":1,""count"":1},""1031623038"":{""name"":""XuNL"",""price"":188661436,""count"":0},""0"":{""name"":""Vz"",""price"":2147483647,""count"":1}}}";
 			JObject v2 = JObject.Parse(json);
 		    var v3 = convertToJson3(v2);
 			Console.Write(v3);
@@ -25,14 +26,14 @@ namespace JsonConversion
             {
                 var prod = new JObject();
                 var jp = (JProperty) child;
-                prod.Add("id", jp.Name);
+                prod.Add("id", int.Parse(jp.Name));
                 if (child.HasValues)
                 {
                     var children = child.Value<JToken>().Children();
                     var ch = children.ToList()[0];
                     prod.Add("name", ch.Value<string>("name"));
                     prod.Add("price", ch.Value<double>("price"));
-                    prod.Add("count", ch.Value<long>("count"));
+                    prod.Add("count", ch.Value<int>("count"));
                 }
                 newProducts.Add(prod);
             }

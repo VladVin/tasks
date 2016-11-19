@@ -15,7 +15,15 @@ namespace EvalTask
 				var literals = JObject.Parse(json);
 				expression = Evaluator.SubstituteConstants(expression, literals);
 			}
-			var output = Evaluator.Evaluate(expression);
+			var output = "";
+			try
+			{
+				output = Evaluator.Evaluate(expression);
+			}
+			catch (System.Data.SyntaxErrorException ignored)
+			{
+				output = expression;
+			}
 			Console.WriteLine(output);
 		}
 	}

@@ -22,7 +22,7 @@ namespace EvalTask
 			}
 			catch (System.Data.SyntaxErrorException ignored)
 			{
-				output = expression;
+				output = "error";
 			}
 			Console.WriteLine(output);
 		}

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Text.RegularExpressions;
 using Newtonsoft.Json.Linq;
 
 namespace EvalTask
@@ -17,6 +16,10 @@ namespace EvalTask
 				expression = Evaluator.SubstituteConstants(expression, literals);
 			}
 			var output = Evaluator.Evaluate(expression);
+			if (output == "Infinity")
+			{
+				output = "error";
+			}
 			Console.WriteLine(output);
 		}
 	}

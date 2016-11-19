@@ -54,6 +54,7 @@
     <Compile Include="EvalProgram.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Evaluator.cs" />
+    <Compile Include="Evaluator_Should.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

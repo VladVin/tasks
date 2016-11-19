@@ -72,7 +72,7 @@ namespace JsonConversion
 
 	    private static double calcPrice(string expression, JToken jConstants)
 	    {
-	        return double.Parse(Evaluator.Evaluate(expression, jConstants));
+	        return double.Parse(Evaluator.Evaluate(expression, jConstants).Replace(".", ","));
 	    }
 	}
 }

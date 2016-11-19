@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -28,21 +29,32 @@ namespace SimQLTask
         {
                 JObject tmp = data;
                 int i = 0;
-                foreach (string s in q.Split('.'))
+ 
+            foreach (string s in q.Split('.'))
                 {
-                    if (i < q.Split('.').Length - 1)
+               
+                if (i < q.Split('.').Length - 1)
                     {
-                        if (tmp == null)
+                    if (tmp?[s] == null || (tmp[s] is JValue))
                             return null;
                         tmp = (JObject) tmp[s];
                     }
                     else
                     {
-                        return (q + " = " + (tmp[s] as JValue).ToString(CultureInfo.InvariantCulture));
+                    Console.WriteLine("3 " + tmp[s]);
+                    if (tmp?[s] == null )
+                            return null;
+
+                        var jValue = tmp[s] as JValue;
+                        if (jValue != null)
+                            return (q + " = " + jValue.ToString(CultureInfo.InvariantCulture));
+                        else return null;
                     }
                     i++;
                 }
-            return tmp[q] == null ? null : "";
+
+            //return null;
+            return tmp[q] == null ? null : q + " = ";
         } 
     }
 }
